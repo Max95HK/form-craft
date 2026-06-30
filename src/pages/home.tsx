@@ -25,7 +25,13 @@ const Home = () => {
         className="absolute inset-0 rounded-[inherit]"
         style={{ backgroundImage: gradient }}
       />
-      <div className="bg-light-background size-full rounded-[inherit] relative"></div>
+      <motion.div
+        className="absolute inset-0 rounded-[inherit] blur-xs"
+        style={{ backgroundImage: gradient }}
+      />
+      <div className="bg-light-background size-full rounded-[inherit] relative overflow-hidden">
+        <div className="relative"></div>
+      </div>
     </div>
   );
 };
