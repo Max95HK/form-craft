@@ -106,12 +106,6 @@
   }
 }
 
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
 @layer components {
   .menu-button-clip {
     overflow: hidden;
@@ -136,35 +130,5 @@
 
   .menu-button-clip:hover::after {
     clip-path: circle(75%);
-  }
-
-  .form-card {
-    background-color: var(--light-background);
-    width: min(90%, 30rem);
-    aspect-ratio: 1/1;
-    border-radius: 0.75rem;
-    position: relative;
-  }
-
-  .form-card::before,
-  .form-card::after {
-    content: "";
-    position: absolute;
-    inset: -3px;
-    background-image: conic-gradient(from var(--angle), transparent, blue);
-    border-radius: 0.75rem;
-    z-index: -1;
-    animation: spin 3s linear infinite;
-  }
-
-  .form-card::before {
-    filter: blur(1.5rem);
-    opacity: 0.5;
-  }
-}
-
-@keyframes spin {
-  to {
-    --angle: 360deg;
   }
 }
