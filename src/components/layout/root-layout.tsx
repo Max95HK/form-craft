@@ -7,11 +7,9 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 import AppSidebar from "@/components/layout/app-sidebar";
 
-
-
 const RootLayout = () => (
   <>
-    <DragDropProvider onDragStart={() => {}} onDragEnd={}>
+    <DragDropProvider onDragStart={() => {}} onDragEnd={() => {}}>
       <SidebarProvider>
         <AppSidebar />
         <main className="p-2 w-full">

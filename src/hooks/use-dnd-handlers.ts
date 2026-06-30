@@ -23,7 +23,7 @@ export const useDndHandlers = () => {
       const id = crypto.randomUUID();
       idRef.current = id;
 
-      const sourceId = event.operation.source?.id as string;
+      const sourceId = String(event.operation.source?.id);
       if (!sourceId) return;
 
       const isFromSidebar = isFieldType(sourceId);
@@ -42,7 +42,7 @@ export const useDndHandlers = () => {
     (event: DragEndEvent) => {
       if (event.canceled) return;
 
-      const type = event.operation.source?.id as string;
+      const type = String(event.operation.source?.id);
       if (!type) return;
       if (!isFieldType(type)) return;
 
