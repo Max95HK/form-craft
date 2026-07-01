@@ -30,6 +30,7 @@ export type SelectFieldConfig =
       type: "select";
       id: string;
       isMultiple: false;
+      placeholder?: string;
       defaultValue?: string;
       label: string;
       options: Array<{ value: string; label: string }>;
@@ -41,6 +42,7 @@ export type SelectFieldConfig =
       type: "select";
       id: string;
       label: string;
+      placeholder?: string;
       isMultiple: true;
       defaultValue?: string[];
       options: Array<{ value: string; label: string }>;

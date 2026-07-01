@@ -19,7 +19,7 @@ export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
       return {
         type,
         id,
-        label: "",
+        label: "Text Field",
         defaultValue: "",
         validation: {
           required: false,
@@ -31,7 +31,7 @@ export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
         type,
         id,
         defaultValue: 0,
-        label: "",
+        label: "Number Field",
         validation: {
           required: false,
         },
@@ -42,7 +42,7 @@ export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
         type,
         id,
         defaultValue: "",
-        label: "",
+        label: "Email Field",
         validation: {
           required: false,
         },
@@ -54,7 +54,7 @@ export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
         id,
         defaultValue: "",
         format: "ISO",
-        label: "",
+        label: "Date Field",
         validation: {
           required: false,
         },
@@ -65,7 +65,8 @@ export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
         type,
         id,
         defaultValue: "",
-        label: "",
+        label: "Password Field",
+        textVisible: false,
         validation: {
           required: false,
         },
@@ -75,7 +76,8 @@ export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
       return {
         type,
         id,
-        label: "",
+        label: "Select Field",
+        placeholder: 'Options',
         isMultiple: false,
         defaultValue: "",
         options: [],
@@ -88,7 +90,7 @@ export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
       return {
         type,
         id,
-        label: "",
+        label: "Checkbox Field",
         defaultValue: false,
         validation: {
           required: false,
