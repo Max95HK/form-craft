@@ -4,6 +4,7 @@ import { selectFields } from "@/store/slices/form-builder-slice";
 
 import AnimatedCard from "@/components/animated-card";
 import EmptyState from "@/components/empty-state";
+import SortableField from "@/components/sortable-field";
 
 import { extractFieldComponents } from "@/lib/utils";
 
@@ -18,9 +19,13 @@ const Home = () => {
         </AnimatedCard>
       ) : (
         <AnimatedCard className="p-4 flex flex-col gap-4">
-          {fields.map((field) => {
+          {fields.map((field, index) => {
             const PreviewComp = extractFieldComponents(field).previewComponent;
-            return <PreviewComp key={field.id} config={field} />;
+            return (
+              <SortableField index={index} id={field.id}>
+                <PreviewComp key={field.id} config={field} />
+              </SortableField>
+            );
           })}
         </AnimatedCard>
       )}
