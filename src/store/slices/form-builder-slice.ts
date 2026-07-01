@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import type { FieldPatch, FieldUnion } from "@/types";
+import type { FieldPatch, FieldConfigUnion } from "@/types";
 import type { RootState } from "..";
 
 interface FormBuilderState {
-  fields: FieldUnion[];
+  fields: FieldConfigUnion[];
 }
 
 const initialState: FormBuilderState = {
@@ -17,7 +17,7 @@ export const formBuilderSlice = createSlice({
   name: "form-builder",
   initialState,
   reducers: {
-    addField: (state, action: PayloadAction<{field: FieldUnion}>) => {
+    addField: (state, action: PayloadAction<{ field: FieldConfigUnion }>) => {
       state.fields.push(action.payload.field);
     },
     updateField: (
@@ -45,6 +45,6 @@ export const formBuilderSlice = createSlice({
 
 export const { addField, updateField, removeField } = formBuilderSlice.actions;
 
-export const selectFields = (state: RootState) => state.formBuilder.fields
+export const selectFields = (state: RootState) => state.formBuilder.fields;
 
 export default formBuilderSlice.reducer;

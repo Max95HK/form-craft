@@ -1,13 +1,18 @@
 import {
-  TypeIcon,
-  HashIcon,
   Calendar1Icon,
-  ChevronDownIcon,
   CheckCheckIcon,
-  MailIcon,
+  ChevronDownIcon,
+  HashIcon,
   LockIcon,
+  MailIcon,
+  TypeIcon,
   type LucideProps,
 } from "lucide-react";
+
+import TextFieldPreviewComp from "@/components/field-previews/text-field-preview-component";
+import TextFieldConfigComp from "@/components/field-configs/text-field-config-component";
+
+import type { FieldRecord } from "@/types";
 
 export const SIDEBAR_ITEMS: {
   type: FieldType;
@@ -56,3 +61,12 @@ export const FIELD_TYPE = {
 } as const;
 
 export type FieldType = (typeof FIELD_TYPE)[keyof typeof FIELD_TYPE];
+
+export const FIELD_REGISTRY: FieldRecord<FieldType> = {
+  text: {
+    components: {
+      previewComponent: TextFieldPreviewComp,
+      configComponent: TextFieldConfigComp,
+    },
+  },
+};

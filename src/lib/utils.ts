@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 import { type FieldType, FIELD_TYPE } from "@/constants";
 
-import type { FieldUnion } from "@/types";
+import type { FieldConfigUnion } from "@/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -13,7 +13,7 @@ export const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-export const buildField = (type: FieldType, id: string): FieldUnion => {
+export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
   switch (type) {
     case FIELD_TYPE.TEXT:
       return {

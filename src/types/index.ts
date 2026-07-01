@@ -1,4 +1,6 @@
-type TextFieldConfig = {
+import type { FieldType } from "@/constants";
+
+export type TextFieldConfig = {
   type: "text";
   id: string;
   label: string;
@@ -122,7 +124,7 @@ type PasswordFieldConfig = {
   };
 };
 
-export type FieldUnion =
+export type FieldConfigUnion =
   | TextFieldConfig
   | NumberFieldConfig
   | EmailFieldConfig
@@ -131,13 +133,17 @@ export type FieldUnion =
   | SelectFieldConfig
   | CheckboxFieldConfig;
 
-export type FieldDescriptor<T extends FieldUnion> = {
+export type FieldDescriptor<T extends FieldConfigUnion> = {
   components: {
     previewComponent: React.ComponentType<{ config: T }>;
     configComponent: React.ComponentType<{
       config: T;
     }>;
   };
+};
+
+export type FieldRecord<K extends FieldType> = {
+  [P in K]: FieldDescriptor<Extract<FieldConfigUnion, { type: P }>>;
 };
 
 export type PartialExceptMany<T, K extends keyof T> = Partial<Omit<T, K>> &
@@ -164,7 +170,7 @@ export type DndState =
   | {
       active: true;
       activeId: string;
-      source: "palette" | "canvas";
+      source: "sidebar" | "builder";
     }
   | {
       active: false;
