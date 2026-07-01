@@ -5,6 +5,8 @@ import { selectFields } from "@/store/slices/form-builder-slice";
 import AnimatedCard from "@/components/animated-card";
 import EmptyState from "@/components/empty-state";
 
+import { extractFieldComponents } from "@/lib/utils";
+
 const Home = () => {
   const fields = useAppSelector(selectFields);
 
@@ -15,10 +17,11 @@ const Home = () => {
           <EmptyState />
         </AnimatedCard>
       ) : (
-        <AnimatedCard>
-          {fields.map((field) => (
-            <div key={field.id}>{field.type}</div>
-          ))}
+        <AnimatedCard className="p-4">
+          {fields.map((field) => {
+            const PreviewComp = extractFieldComponents(field).previewComponent;
+            return <PreviewComp config={field} />;
+          })}
         </AnimatedCard>
       )}
     </>

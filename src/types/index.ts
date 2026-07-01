@@ -13,7 +13,7 @@ export type TextFieldConfig = {
   };
 };
 
-type NumberFieldConfig = {
+export type NumberFieldConfig = {
   type: "number";
   id: string;
   label: string;
@@ -25,7 +25,7 @@ type NumberFieldConfig = {
   };
 };
 
-type SelectFieldConfig =
+export type SelectFieldConfig =
   | {
       type: "select";
       id: string;
@@ -49,7 +49,7 @@ type SelectFieldConfig =
       };
     };
 
-type CheckboxFieldConfig = {
+export type CheckboxFieldConfig = {
   type: "checkbox";
   id: string;
   label: string;
@@ -61,7 +61,7 @@ type CheckboxFieldConfig = {
   };
 };
 
-type DateFieldConfig = {
+export type DateFieldConfig = {
   type: "date";
   id: string;
   defaultValue?: string;
@@ -76,7 +76,7 @@ type DateFieldConfig = {
   };
 };
 
-type EmailFieldConfig = {
+export type EmailFieldConfig = {
   type: "email";
   id: string;
   defaultValue?: string;
@@ -93,7 +93,7 @@ type EmailFieldConfig = {
   };
 };
 
-type PasswordFieldConfig = {
+export type PasswordFieldConfig = {
   type: "password";
   id: string;
   defaultValue?: string;

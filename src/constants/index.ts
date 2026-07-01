@@ -9,8 +9,24 @@ import {
   type LucideProps,
 } from "lucide-react";
 
-import TextFieldPreviewComp from "@/components/field-previews/text-field-preview-component";
-import TextFieldConfigComp from "@/components/field-configs/text-field-config-component";
+import {
+  TextFieldPreviewComp,
+  CheckboxFieldPreviewComp,
+  DateFieldPreviewComp,
+  EmailFieldPreviewComp,
+  NumberFieldPreviewComp,
+  PasswordFieldPreviewComp,
+  SelectFieldPreviewComp,
+} from "@/components/field-previews";
+import {
+  TextFieldConfigComp,
+  CheckboxFieldConfigComp,
+  DateFieldConfigComp,
+  EmailFieldConfigComp,
+  NumberFieldConfigComp,
+  PasswordFieldConfigComp,
+  SelectFieldConfigComp,
+} from "@/components/field-configs/";
 
 import type { FieldRecord } from "@/types";
 
@@ -67,6 +83,42 @@ export const FIELD_REGISTRY: FieldRecord<FieldType> = {
     components: {
       previewComponent: TextFieldPreviewComp,
       configComponent: TextFieldConfigComp,
+    },
+  },
+  number: {
+    components: {
+      previewComponent: NumberFieldPreviewComp,
+      configComponent: NumberFieldConfigComp,
+    },
+  },
+  email: {
+    components: {
+      previewComponent: EmailFieldPreviewComp,
+      configComponent: EmailFieldConfigComp,
+    },
+  },
+  password: {
+    components: {
+      previewComponent: PasswordFieldPreviewComp,
+      configComponent: PasswordFieldConfigComp,
+    },
+  },
+  date: {
+    components: {
+      previewComponent: DateFieldPreviewComp,
+      configComponent: DateFieldConfigComp,
+    },
+  },
+  select: {
+    components: {
+      previewComponent: SelectFieldPreviewComp,
+      configComponent: SelectFieldConfigComp,
+    },
+  },
+  checkbox: {
+    components: {
+      previewComponent: CheckboxFieldPreviewComp,
+      configComponent: CheckboxFieldConfigComp,
     },
   },
 };
