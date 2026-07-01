@@ -20,7 +20,7 @@ const Home = () => {
         <AnimatedCard className="p-4 flex flex-col gap-4">
           {fields.map((field) => {
             const PreviewComp = extractFieldComponents(field).previewComponent;
-            return <PreviewComp config={field} />;
+            return <PreviewComp key={field.id} config={field} />;
           })}
         </AnimatedCard>
       )}

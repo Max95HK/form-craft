@@ -1,6 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+import { format, isValid, parseISO } from "date-fns";
+
 import { type FieldType, FIELD_REGISTRY, FIELD_TYPE } from "@/constants";
 
 import type { FieldConfigUnion } from "@/types";
@@ -53,7 +55,7 @@ export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
         type,
         id,
         defaultValue: "",
-        format: "ISO",
+        format: "PPP",
         label: "Date Field",
         validation: {
           required: false,
@@ -77,7 +79,7 @@ export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
         type,
         id,
         label: "Select Field",
-        placeholder: 'Options',
+        placeholder: "Options",
         isMultiple: false,
         defaultValue: "",
         options: [],
@@ -114,4 +116,9 @@ export const extractFieldComponents = <T extends FieldConfigUnion>(
     configComponent: FIELD_REGISTRY[field["type"]].components
       .configComponent as React.ComponentType<{ config: FieldConfigUnion }>,
   };
+};
+
+export const getInitialDate = (value?: string) => {
+  const parsed = value ? parseISO(value) : new Date();
+  return isValid(parsed) ? parsed : new Date();
 };

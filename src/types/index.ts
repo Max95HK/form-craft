@@ -68,7 +68,8 @@ export type DateFieldConfig = {
   id: string;
   defaultValue?: string;
   label: string;
-  format: "YYYY-MM-DD" | "DD/MM/YYYY" | "MM/DD/YYYY" | "ISO";
+  format:
+    "P" | "PP" | "PPP" | "PPPP" | "yyyy-MM-dd" | "dd/MM/yyyy" | "MM/dd/yyyy";
   allowedDates?: string[];
   disabledDates?: string[];
   validation: {
