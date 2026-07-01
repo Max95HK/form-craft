@@ -1,17 +1,17 @@
+import { format } from "date-fns";
 import { useState } from "react";
-import { format, isValid, parseISO } from "date-fns";
 
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Calendar as CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { Field, FieldLabel } from "@/components/ui/field";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Calendar as CalendarIcon } from "lucide-react";
 
-import { cn, getInitialDate } from "@/lib/utils";
+import { getInitialDate } from "@/lib/utils";
 
 import type { DateFieldConfig } from "@/types";
 

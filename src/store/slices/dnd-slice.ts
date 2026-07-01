@@ -44,6 +44,6 @@ export const DndSlice = createSlice({
 
 export const { dragStart, dragEnd } = DndSlice.actions;
 
-export const selectDnd = (state: RootState) => state.dnd.active;
+export const selectDnd = (state: RootState) => state.dnd;
 
 export default DndSlice.reducer;

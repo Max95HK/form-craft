@@ -1,7 +1,5 @@
 import { useSortable } from "@dnd-kit/react/sortable";
 
-import { Button } from "@/components/ui/button";
-
 import { GripVertical } from "lucide-react";
 
 type SortableFieldProps = {

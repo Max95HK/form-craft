@@ -6,9 +6,14 @@ import {
   useMotionValue,
 } from "motion/react";
 
+import { useAppSelector } from "@/hooks/use-app-selector";
+import { selectDnd } from "@/store/slices/dnd-slice";
+
 import { cn } from "@/lib/utils";
 
 const AnimatedCard = ({ children, className }: React.ComponentProps<"div">) => {
+  const dndState = useAppSelector(selectDnd);
+
   const turn = useMotionValue(0);
 
   useEffect(() => {
@@ -23,17 +28,31 @@ const AnimatedCard = ({ children, className }: React.ComponentProps<"div">) => {
   return (
     <div className="w-[min(90%,30rem)] aspect-square rounded-3xl p-0.5 relative">
       <motion.div
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: dndState.active
+            ? dndState.source === "sidebar"
+              ? 1
+              : 0
+            : 0,
+        }}
         className="absolute inset-0 rounded-[inherit]"
         style={{ backgroundImage: gradient }}
       />
       <motion.div
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: dndState.active
+            ? dndState.source === "sidebar"
+              ? 1
+              : 0
+            : 0,
+        }}
         className="absolute inset-0 rounded-[inherit] blur-xs"
         style={{ backgroundImage: gradient }}
       />
-      <div className="bg-light-background size-full rounded-[inherit] relative overflow-hidden">
-        <div className={cn("relative", className)}>
-          {children}
-        </div>
+      <div className="bg-light-background size-full rounded-[inherit] relative overflow-y-auto scrollbar-custom">
+        <div className={cn("relative", className)}>{children}</div>
       </div>
     </div>
   );

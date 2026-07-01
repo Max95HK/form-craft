@@ -18,7 +18,7 @@ const Home = () => {
           <EmptyState />
         </AnimatedCard>
       ) : (
-        <AnimatedCard className="p-4 flex flex-col gap-4">
+        <AnimatedCard className="p-4 flex flex-col gap-4 overflow-y-auto">
           {fields.map((field, index) => {
             const PreviewComp = extractFieldComponents(field).previewComponent;
             return (
