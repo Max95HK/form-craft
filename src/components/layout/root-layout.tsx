@@ -10,7 +10,9 @@ import AppSidebar from "@/components/layout/app-sidebar";
 import { useDndHandlers } from "@/hooks/use-dnd-handlers";
 
 const RootLayout = () => {
+  // Hooks
   const { handleDragStart, handleDragEnd } = useDndHandlers();
+
   return (
     <>
       <DragDropProvider onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
