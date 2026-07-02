@@ -5,7 +5,7 @@ type SelectFieldConfigCompProps = {
 };
 
 const SelectFieldConfigComp = ({ config }: SelectFieldConfigCompProps) => {
-  return <div>Config</div>;
+  return <div>Select Config</div>;
 };
 
 export default SelectFieldConfigComp;

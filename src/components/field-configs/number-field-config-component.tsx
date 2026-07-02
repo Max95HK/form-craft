@@ -5,7 +5,7 @@ type NumberFieldConfigCompProps = {
 };
 
 const NumberFieldConfigComp = ({ config }: NumberFieldConfigCompProps) => {
-  return <div>Config</div>;
+  return <div>Number Config</div>;
 };
 
 export default NumberFieldConfigComp;

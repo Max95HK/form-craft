@@ -5,7 +5,7 @@ type TextFieldConfigCompProps = {
 };
 
 const TextFieldConfigComp = ({ config }: TextFieldConfigCompProps) => {
-  return <div>Config</div>;
+  return <div>Text Config</div>;
 };
 
 export default TextFieldConfigComp;

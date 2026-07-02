@@ -5,7 +5,7 @@ type PasswordFieldConfigCompProps = {
 };
 
 const PasswordFieldConfigComp = ({ config }: PasswordFieldConfigCompProps) => {
-  return <div>Config</div>;
+  return <div>Password Config</div>;
 };
 
 export default PasswordFieldConfigComp;

@@ -5,7 +5,7 @@ type DateFieldConfigCompProps = {
 };
 
 const DateFieldConfigComp = ({ config }: DateFieldConfigCompProps) => {
-  return <div>Config</div>;
+  return <div>Date Config</div>;
 };
 
 export default DateFieldConfigComp;

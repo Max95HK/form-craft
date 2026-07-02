@@ -5,7 +5,7 @@ type EmailFieldConfigCompProps = {
 };
 
 const EmailFieldConfigComp = ({ config }: EmailFieldConfigCompProps) => {
-  return <div>Config</div>;
+  return <div>Email Config</div>;
 };
 
 export default EmailFieldConfigComp;

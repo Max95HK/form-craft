@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import AnimatedCard from "@/components/animated-card";
 import EmptyState from "@/components/empty-state";
 import SortableField from "@/components/sortable-field";
-import FieldConfig from "@/components/field-config";
+import FieldConfigSheet from "@/components/field-config-sheet";
 
 import { extractFieldComponents } from "@/lib/utils";
 
@@ -40,7 +40,7 @@ const Home = () => {
         </AnimatedCard>
       )}
 
-      <FieldConfig />
+      <FieldConfigSheet />
     </>
   );
 };
