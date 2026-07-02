@@ -3,8 +3,9 @@ import { useCallback, useRef } from "react";
 import type { DragEndEvent, DragStartEvent } from "@dnd-kit/react";
 
 import { useAppDispatch } from "@/hooks/use-app-dispatch";
+import { useAppSelector } from "@/hooks/use-app-selector";
 
-import { dragEnd, dragStart } from "@/store/slices/dnd-slice";
+import { dragEnd, dragStart, selectDnd } from "@/store/slices/dnd-slice";
 import { addField } from "@/store/slices/form-builder-slice";
 import { selectId } from "@/store/slices/selected-id-slice";
 
@@ -17,6 +18,7 @@ export const useDndHandlers = () => {
   const idRef = useRef<string | null>(null);
   // Hooks
   const dispatch = useAppDispatch();
+  const dndState = useAppSelector(selectDnd);
 
   const handleDragStart = useCallback(
     (event: DragStartEvent) => {
@@ -26,12 +28,11 @@ export const useDndHandlers = () => {
       const sourceId = String(event.operation.source?.id);
       if (!sourceId) return;
 
-      const isFromSidebar = isFieldType(sourceId);
-
       dispatch(
         dragStart({
-          activeId: isFromSidebar ? id : sourceId,
-          source: isFromSidebar ? "sidebar" : "builder",
+          activeId: isFieldType(sourceId) ? id : sourceId,
+          activeType: isFieldType(sourceId) ? sourceId : null,
+          source: isFieldType(sourceId) ? "sidebar" : "builder",
         }),
       );
     },
@@ -42,12 +43,12 @@ export const useDndHandlers = () => {
     (event: DragEndEvent) => {
       if (event.canceled) return;
 
-      const type = String(event.operation.source?.id);
-      if (!type) return;
-      if (!isFieldType(type)) return;
-
       if (!idRef.current) return;
       dispatch(selectId({ id: idRef.current }));
+
+      if (!dndState.active) return;
+      const type = dndState.activeType;
+      if (!type) return;
 
       const field = buildField(type, idRef.current);
 
@@ -56,7 +57,7 @@ export const useDndHandlers = () => {
 
       idRef.current = null;
     },
-    [dispatch],
+    [dispatch, dndState],
   );
 
   return { handleDragStart, handleDragEnd };

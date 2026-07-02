@@ -84,6 +84,7 @@ export type EmailFieldConfig = {
   id: string;
   defaultValue?: string;
   label: string;
+  placeholder?: string;
   normalize?: boolean;
   allowedDomains?: string[]; // es: ["gmail.com"]
   blockedDomains?: string[]; // es: ["yopmail.com"]
@@ -100,6 +101,7 @@ export type PasswordFieldConfig = {
   type: "password";
   id: string;
   defaultValue?: string;
+  placeholder?: string;
   label: string;
   textVisible?: boolean;
   validation: {

@@ -1,9 +1,9 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { format, isValid, parseISO } from "date-fns";
+import { isValid, parseISO } from "date-fns";
 
-import { type FieldType, FIELD_REGISTRY, FIELD_TYPE } from "@/constants";
+import { FIELD_REGISTRY, FIELD_TYPE, type FieldType } from "@/constants";
 
 import type { FieldConfigUnion } from "@/types";
 
@@ -44,6 +44,7 @@ export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
         type,
         id,
         defaultValue: "",
+        placeholder: "john.doe@example.com",
         label: "Email Field",
         validation: {
           required: false,
@@ -67,6 +68,7 @@ export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
         type,
         id,
         defaultValue: "",
+        placeholder: "••••••••",
         label: "Password Field",
         textVisible: false,
         validation: {

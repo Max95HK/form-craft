@@ -17,7 +17,7 @@ type PasswordFieldPreviewCompProps = {
 };
 
 const PasswordFieldPreviewComp = ({
-  config: { label, id, defaultValue, textVisible },
+  config: { label, id, defaultValue, textVisible, placeholder },
 }: PasswordFieldPreviewCompProps) => {
   // Hooks
   const selectedId = useAppSelector(selectSelectedId);
@@ -37,13 +37,14 @@ const PasswordFieldPreviewComp = ({
           id={id}
           type={textVisible ? "text" : "password"}
           className={cn(
-            "border border-secondary outline-none bg-secondary/80 group-hover/field:bg-secondary transition-all pointer-events-none",
+            "border border-secondary outline-none bg-secondary/80 group-hover/field:bg-secondary transition-all pointer-events-none placeholder:text-foreground/60",
             isSelected &&
               "bg-accent/60 group-hover/field:bg-accent/80 border-accent",
           )}
+          placeholder={placeholder}
           value={defaultValue ?? ""}
         />
-        <Button size="icon" variant="ghost" className="absolute right-0">
+        <Button size="icon" variant="ghost" className="absolute right-0 pointer-events-none">
           {textVisible ? <EyeClosedIcon /> : <EyeIcon />}
         </Button>
       </div>

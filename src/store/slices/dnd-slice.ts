@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import type { RootState } from "..";
+import type { FieldType } from "@/constants";
 
 type Source = "sidebar" | "builder";
 
@@ -10,6 +11,7 @@ type DndState =
   | {
       active: true;
       activeId: string;
+      activeType: FieldType | null;
       source: Source;
     }
   | {
@@ -26,13 +28,18 @@ export const DndSlice = createSlice({
   reducers: {
     dragStart: (
       _,
-      action: PayloadAction<{ activeId: string; source: Source }>,
+      action: PayloadAction<{
+        activeId: string;
+        activeType: FieldType | null;
+        source: Source;
+      }>,
     ) => {
-      const { activeId, source } = action.payload;
+      const { activeId, source, activeType } = action.payload;
 
       return {
         active: true,
         activeId,
+        activeType,
         source,
       };
     },

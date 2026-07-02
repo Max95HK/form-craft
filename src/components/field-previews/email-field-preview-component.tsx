@@ -14,7 +14,7 @@ type EmailFieldPreviewCompProps = {
 };
 
 const EmailFieldPreviewComp = ({
-  config: { label, id, defaultValue },
+  config: { label, id, defaultValue, placeholder },
 }: EmailFieldPreviewCompProps) => {
   // Hooks
   const selectedId = useAppSelector(selectSelectedId);
@@ -32,8 +32,9 @@ const EmailFieldPreviewComp = ({
       <Input
         id={id}
         type="email"
+        placeholder={placeholder}
         className={cn(
-          "border border-secondary outline-none bg-secondary/80 group-hover/field:bg-secondary transition-all pointer-events-none",
+          "border border-secondary outline-none bg-secondary/80 group-hover/field:bg-secondary transition-all pointer-events-none placeholder:text-foreground/60",
           isSelected &&
             "bg-accent/60 group-hover/field:bg-accent/80 border-accent",
         )}
