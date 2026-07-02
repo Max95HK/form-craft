@@ -104,6 +104,18 @@
     background: var(--primary);
     color: white;
   }
+
+  /* Chrome, Safari, Edge */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 }
 
 @layer components {
@@ -135,8 +147,8 @@
 
 @layer utilities {
   .scrollbar-custom {
-    scrollbar-width: thin;                         
-    scrollbar-color: var(--accent) var(--secondary); 
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--secondary);
   }
 
   .scrollbar-custom::-webkit-scrollbar {
