@@ -35,13 +35,14 @@ const FieldConfigSheet = () => {
   };
 
   return (
-    <Sheet open={isOpen} onOpenChange={handleOpenChange} >
-      <SheetContent
-        className="bg-light-background border-none"
-      >
+    <Sheet open={isOpen} onOpenChange={handleOpenChange}>
+      <SheetContent className="bg-light-background border-none">
         <SheetHeader>
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
-          <SheetDescription>This action cannot be undone.</SheetDescription>
+          <SheetTitle className="text-2xl">Field Options</SheetTitle>
+          <SheetDescription className="text-foreground/50 leading-6">
+            Configure the properties, behaviors, and accessibility settings for
+            this field.
+          </SheetDescription>
         </SheetHeader>
 
         <div className="">
