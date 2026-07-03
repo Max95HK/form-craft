@@ -1,6 +1,5 @@
 import { useAppSelector } from "@/hooks/use-app-selector";
-import { selectId, selectSelectedId } from "@/store/slices/selected-id-slice";
-import { useAppDispatch } from "@/hooks/use-app-dispatch";
+import { selectSelectedId } from "@/store/slices/selected-id-slice";
 
 import { format } from "date-fns";
 import { useState } from "react";
@@ -13,12 +12,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Calendar as CalendarIcon, MousePointerClickIcon } from "lucide-react";
+import FieldActions from "@/components/field-actions";
 
 import { cn, getInitialDate } from "@/lib/utils";
 
+import { Calendar as CalendarIcon } from "lucide-react";
+
 import type { DateFieldConfig } from "@/types";
-import SortableHanlde from "../sortable-handle";
 
 type DateFieldPreviewCompProps = {
   config: DateFieldConfig;
@@ -32,15 +32,12 @@ const DateFieldPreviewComp = ({
 
   // Hooks
   const selectedId = useAppSelector(selectSelectedId);
-  const dispatch = useAppDispatch();
 
   // Derived state
   const isSelected = selectedId !== null && selectedId === id;
 
   return (
-    <Field
-      className="cursor-pointer"
-    >
+    <Field className="cursor-pointer">
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <div className="flex gap-2">
         <Popover open={false}>
@@ -64,20 +61,16 @@ const DateFieldPreviewComp = ({
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0">
-            <Calendar mode="single" selected={date} onSelect={setDate} required />
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={setDate}
+              required
+            />
           </PopoverContent>
         </Popover>
 
-         <div className="flex gap-2">
-          <SortableHanlde />
-          <Button
-            variant="outline"
-            onClick={() => dispatch(selectId({ id }))}
-            className="border-secondary"
-          >
-            <MousePointerClickIcon className="size-5" />
-          </Button>
-        </div>
+        <FieldActions id={id} />
       </div>
     </Field>
   );

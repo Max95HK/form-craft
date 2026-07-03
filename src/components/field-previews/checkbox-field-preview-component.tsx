@@ -1,15 +1,12 @@
 import { useAppSelector } from "@/hooks/use-app-selector";
-import { useAppDispatch } from "@/hooks/use-app-dispatch";
-import { selectId, selectSelectedId } from "@/store/slices/selected-id-slice";
+import { selectSelectedId } from "@/store/slices/selected-id-slice";
 
-import { Field, FieldLabel } from "@/components/ui/field";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
-import SortableHanlde from "@/components/sortable-handle";
+import { Field, FieldLabel } from "@/components/ui/field";
+import FieldActions from "@/components/field-actions";
 
 import { cn } from "@/lib/utils";
 
-import { MousePointerClickIcon } from "lucide-react";
 
 import type { CheckboxFieldConfig } from "@/types";
 
@@ -22,10 +19,10 @@ const CheckboxFieldPreviewComp = ({
 }: CheckboxFieldPreviewCompProps) => {
   // Hooks
   const selectedId = useAppSelector(selectSelectedId);
-  const dispatch = useAppDispatch();
 
   // Derived state
   const isSelected = selectedId !== null && selectedId === id;
+
   return (
     <Field
       className={cn("group/field cursor-pointer")}
@@ -44,16 +41,7 @@ const CheckboxFieldPreviewComp = ({
           />
         </div>
 
-         <div className="flex gap-2">
-          <SortableHanlde />
-          <Button
-            variant="outline"
-            onClick={() => dispatch(selectId({ id }))}
-            className="border-secondary"
-          >
-            <MousePointerClickIcon className="size-5" />
-          </Button>
-        </div>
+      <FieldActions id={id} />
       </div>
     </Field>
   );

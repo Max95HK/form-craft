@@ -1,7 +1,7 @@
 import { useAppSelector } from "@/hooks/use-app-selector";
-import { selectId, selectSelectedId } from "@/store/slices/selected-id-slice";
-import { useAppDispatch } from "@/hooks/use-app-dispatch";
+import { selectSelectedId } from "@/store/slices/selected-id-slice";
 
+import { Field, FieldLabel } from "@/components/ui/field";
 import {
   Select,
   SelectContent,
@@ -10,15 +10,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Button } from "../ui/button";
+import FieldActions from "../field-actions";
 
 import { cn } from "@/lib/utils";
 
-import { MousePointerClickIcon } from "lucide-react";
 
 import type { SelectFieldConfig } from "@/types";
-import SortableHanlde from "../sortable-handle";
 
 type SelectFieldPreviewCompProps = {
   config: SelectFieldConfig;
@@ -29,15 +26,12 @@ const SelectFieldPreviewComp = ({
 }: SelectFieldPreviewCompProps) => {
   // Hooks
   const selectedId = useAppSelector(selectSelectedId);
-  const dispatch = useAppDispatch();
 
   // Derived state
   const isSelected = selectedId !== null && selectedId === id;
 
   return (
-    <Field
-      className={cn("group/field cursor-pointer")}
-    >
+    <Field className={cn("group/field cursor-pointer")}>
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <div className="flex gap-2">
         <Select
@@ -62,16 +56,7 @@ const SelectFieldPreviewComp = ({
           </SelectContent>
         </Select>
 
-         <div className="flex gap-2">
-          <SortableHanlde />
-          <Button
-            variant="outline"
-            onClick={() => dispatch(selectId({ id }))}
-            className="border-secondary"
-          >
-            <MousePointerClickIcon className="size-5" />
-          </Button>
-        </div>
+        <FieldActions id={id} />
       </div>
     </Field>
   );

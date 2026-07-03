@@ -1,15 +1,12 @@
-import { useAppDispatch } from "@/hooks/use-app-dispatch";
 import { useAppSelector } from "@/hooks/use-app-selector";
-import { selectId, selectSelectedId } from "@/store/slices/selected-id-slice";
+import { selectSelectedId } from "@/store/slices/selected-id-slice";
 
+import FieldActions from "@/components/field-actions";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import SortableHanlde from "@/components/sortable-handle";
 
 import { cn } from "@/lib/utils";
 
-import { MousePointerClickIcon } from "lucide-react";
 
 import type { EmailFieldConfig } from "@/types";
 
@@ -22,7 +19,6 @@ const EmailFieldPreviewComp = ({
 }: EmailFieldPreviewCompProps) => {
   // Hooks
   const selectedId = useAppSelector(selectSelectedId);
-  const dispatch = useAppDispatch();
 
   // Derived state
   const isSelected = selectedId !== null && selectedId === id;
@@ -46,16 +42,7 @@ const EmailFieldPreviewComp = ({
           value={defaultValue ?? ""}
         />
 
-         <div className="flex gap-2">
-          <SortableHanlde />
-          <Button
-            variant="outline"
-            onClick={() => dispatch(selectId({ id }))}
-            className="border-secondary"
-          >
-            <MousePointerClickIcon className="size-5" />
-          </Button>
-        </div>
+         <FieldActions id={id} />
       </div>
     </Field>
   );

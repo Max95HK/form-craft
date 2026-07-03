@@ -6,6 +6,7 @@ import { DragDropProvider } from "@dnd-kit/react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 import AppSidebar from "@/components/layout/app-sidebar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 import { useDndHandlers } from "@/hooks/use-dnd-handlers";
 
@@ -16,15 +17,17 @@ const RootLayout = () => {
   return (
     <>
       <DragDropProvider onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-        <SidebarProvider>
-          <AppSidebar />
-          <main className="flex flex-col h-screen w-full overflow-hidden p-2">
-            <SidebarTrigger />
-            <div className="flex-1 min-h-0 flex items-center justify-center overflow-y-auto">
-              <Outlet />
-            </div>
-          </main>
-        </SidebarProvider>
+        <TooltipProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <main className="flex flex-col h-screen w-full overflow-hidden p-2">
+              <SidebarTrigger />
+              <div className="flex-1 min-h-0 flex items-center justify-center overflow-y-auto">
+                <Outlet />
+              </div>
+            </main>
+          </SidebarProvider>
+        </TooltipProvider>
       </DragDropProvider>
       {/* <TanStackRouterDevtools /> */}
     </>
