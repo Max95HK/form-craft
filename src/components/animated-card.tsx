@@ -22,7 +22,7 @@ const AnimatedCard = ({ children, className }: React.ComponentProps<"div">) => {
   useEffect(() => {
     if (!isSidebarDrag) return;
 
-    const controls = animate(turn, 1, {
+    const controls = animate(turn, turn.get() + 1, {
       ease: "linear",
       duration: 4,
       repeat: Infinity,

@@ -35,12 +35,9 @@ const FieldConfigSheet = () => {
   };
 
   return (
-    <Sheet open={isOpen} onOpenChange={handleOpenChange} modal={false}>
+    <Sheet open={isOpen} onOpenChange={handleOpenChange} >
       <SheetContent
         className="bg-light-background border-none"
-        onInteractOutside={(event) => {
-          event.preventDefault();
-        }}
       >
         <SheetHeader>
           <SheetTitle>Are you absolutely sure?</SheetTitle>
