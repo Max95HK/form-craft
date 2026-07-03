@@ -2,7 +2,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarMenu,
-  useSidebar
+  useSidebar,
 } from "@/components/ui/sidebar";
 
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,6 @@ import {
   SidebarFooter,
   SidebarHeader,
 } from "@/components/ui/sidebar";
-
 
 import { SIDEBAR_ITEMS } from "@/constants";
 
@@ -40,6 +39,7 @@ const AppSidebar = () => {
           <SidebarGroupContent>
             <SidebarMenu className="gap-6">
               {SIDEBAR_ITEMS.map(({ type, icon }) => (
+                // TODO: Mostrare in base a isMobile il componente adatto (da mobile niente drag)
                 <DraggableSidebarItem key={type} type={type} icon={icon} />
               ))}
             </SidebarMenu>
