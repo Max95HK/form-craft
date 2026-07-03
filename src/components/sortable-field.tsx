@@ -1,6 +1,6 @@
 import { useSortable } from "@dnd-kit/react/sortable";
 
-import { GripVertical } from "lucide-react";
+import { SortableFieldContext } from "@/contexts/sortable-field-context";
 
 type SortableFieldProps = {
   id: string;
@@ -15,14 +15,11 @@ const SortableField = ({
 }: SortableFieldProps) => {
   const { ref, handleRef } = useSortable({ id, index });
   return (
-    <div ref={ref} {...props} className="relative">
-      <GripVertical
-        role="button"
-        ref={handleRef}
-        className="absolute right-0 cursor-grab"
-      />
-      {children}
-    </div>
+    <SortableFieldContext.Provider value={{ handleRef }}>
+      <div ref={ref} {...props}>
+        {children}
+      </div>
+    </SortableFieldContext.Provider>
   );
 };
 

@@ -8,9 +8,10 @@ import { Button } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
 
-import { EyeIcon, EyeClosedIcon } from "lucide-react";
+import { EyeIcon, EyeClosedIcon, MousePointerClickIcon } from "lucide-react";
 
 import type { PasswordFieldConfig } from "@/types";
+import SortableHanlde from "../sortable-handle";
 
 type PasswordFieldPreviewCompProps = {
   config: PasswordFieldConfig;
@@ -28,11 +29,10 @@ const PasswordFieldPreviewComp = ({
 
   return (
     <Field
-      onClick={() => dispatch(selectId({ id }))}
       className="group/field cursor-pointer"
     >
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
-      <div className="relative">
+      <div className="relative flex gap-2">
         <Input
           id={id}
           type={textVisible ? "text" : "password"}
@@ -47,6 +47,17 @@ const PasswordFieldPreviewComp = ({
         <Button size="icon" variant="ghost" className="absolute right-0 pointer-events-none">
           {textVisible ? <EyeClosedIcon /> : <EyeIcon />}
         </Button>
+
+         <div className="flex gap-2">
+          <SortableHanlde />
+          <Button
+            variant="outline"
+            onClick={() => dispatch(selectId({ id }))}
+            className="border-secondary"
+          >
+            <MousePointerClickIcon className="size-5" />
+          </Button>
+        </div>
       </div>
     </Field>
   );

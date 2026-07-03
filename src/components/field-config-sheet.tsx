@@ -9,7 +9,9 @@ import {
 } from "@/components/ui/sheet";
 
 import { useAppSelector } from "@/hooks/use-app-selector";
+import { useAppDispatch } from "@/hooks/use-app-dispatch";
 import { selectSelectedId } from "@/store/slices/selected-id-slice";
+import { clearId } from "@/store/slices/selected-id-slice";
 
 import { extractFieldComponents } from "@/lib/utils";
 
@@ -17,9 +19,10 @@ const FieldConfigSheet = () => {
   // Hooks
   const fields = useAppSelector(selectFields);
   const selectedId = useAppSelector(selectSelectedId);
+  const dispatch = useAppDispatch();
 
   // Derived states
-  const isOpen = fields.length > 0;
+  const isOpen = selectedId !== null;
 
   const selectedField = fields.find((field) => field.id === selectedId);
 
@@ -27,11 +30,17 @@ const FieldConfigSheet = () => {
 
   const ConfigComp = extractFieldComponents(selectedField).configComponent;
 
+  const handleOpenChange = (open: boolean) => {
+    if (!open) dispatch(clearId());
+  };
+
   return (
-    <Sheet open={isOpen} modal={false}>
+    <Sheet open={isOpen} onOpenChange={handleOpenChange} modal={false}>
       <SheetContent
-        showCloseButton={false}
         className="bg-light-background border-none"
+        onInteractOutside={(event) => {
+          event.preventDefault();
+        }}
       >
         <SheetHeader>
           <SheetTitle>Are you absolutely sure?</SheetTitle>
