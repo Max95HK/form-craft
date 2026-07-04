@@ -4,7 +4,7 @@ type PasswordFieldConfigCompProps = {
   config: PasswordFieldConfig;
 };
 
-const PasswordFieldConfigComp = ({ config }: PasswordFieldConfigCompProps) => {
+const PasswordFieldConfigComp = ({ config: {} }: PasswordFieldConfigCompProps) => {
   return <div>Password Config</div>;
 };
 

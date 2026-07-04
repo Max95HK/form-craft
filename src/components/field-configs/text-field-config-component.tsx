@@ -6,11 +6,12 @@ import {
   FieldLegend,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 
 import { useAppDispatch } from "@/hooks/use-app-dispatch";
 import { updateField } from "@/store/slices/form-builder-slice";
+
 import type { TextFieldConfig } from "@/types";
-import { Checkbox } from "../ui/checkbox";
 
 type TextFieldConfigCompProps = {
   config: TextFieldConfig;
@@ -21,8 +22,6 @@ const TextFieldConfigComp = ({
 }: TextFieldConfigCompProps) => {
   // Hooks
   const dispatch = useAppDispatch();
-
-  // Handlers
 
   return (
     <div className="flex flex-col gap-6">
