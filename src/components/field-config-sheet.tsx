@@ -40,7 +40,7 @@ const FieldConfigSheet = () => {
   return (
     <Sheet open={isOpen} onOpenChange={handleOpenChange} modal={isMobile}>
       <SheetContent
-        className="bg-light-background border-none p-2"
+        className="bg-light-background border-none p-2 overflow-y-auto scrollbar-custom"
         onInteractOutside={(event) => {
           if (!isMobile) {
             event.preventDefault();

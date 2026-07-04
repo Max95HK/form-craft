@@ -43,6 +43,30 @@ const PasswordFieldConfigComp = ({
         placeholder={placeholder}
       />
 
+      <Field className="flex flex-col gap-2 text-foreground/80">
+        <FieldLabel htmlFor="field-is-visible" className="text-lg">
+          Text Visible?
+        </FieldLabel>
+        <Checkbox
+          id="field-is-visible"
+          checked={textVisible}
+          className="cursor-pointer focus-visible:border-accent"
+          onCheckedChange={(event) => {
+            if (typeof event === "boolean") {
+              dispatch(
+                updateField({
+                  fieldUpdates: {
+                    id,
+                    type,
+                    textVisible: event,
+                  },
+                }),
+              );
+            }
+          }}
+        />
+      </Field>
+
       <FieldSet>
         <FieldLegend className="text-2xl! text-accent">Validation</FieldLegend>
         <FieldGroup>
@@ -62,6 +86,141 @@ const PasswordFieldConfigComp = ({
                         id,
                         type,
                         validation: { required: event },
+                      },
+                    }),
+                  );
+                }
+              }}
+            />
+          </Field>
+
+          <Field className="flex flex-col gap-2 text-foreground/80">
+            <FieldLabel htmlFor="field-is-symbol-required" className="text-lg">
+              Require Symbol?
+            </FieldLabel>
+            <Checkbox
+              id="field-is-symbol-required"
+              checked={validation.requireSymbol}
+              className="cursor-pointer focus-visible:border-accent"
+              onCheckedChange={(event) => {
+                if (typeof event === "boolean") {
+                  dispatch(
+                    updateField({
+                      fieldUpdates: {
+                        id,
+                        type,
+                        validation: {
+                          required: validation.required,
+                          requireSymbol: event,
+                        },
+                      },
+                    }),
+                  );
+                }
+              }}
+            />
+          </Field>
+
+          <Field className="flex flex-col gap-2 text-foreground/80">
+            <FieldLabel htmlFor="field-is-number-required" className="text-lg">
+              Require Number?
+            </FieldLabel>
+            <Checkbox
+              id="field-is-number-required"
+              checked={validation.requireNumber}
+              className="cursor-pointer focus-visible:border-accent"
+              onCheckedChange={(event) => {
+                if (typeof event === "boolean") {
+                  dispatch(
+                    updateField({
+                      fieldUpdates: {
+                        id,
+                        type,
+                        validation: {
+                          required: validation.required,
+                          requireNumber: event,
+                        },
+                      },
+                    }),
+                  );
+                }
+              }}
+            />
+          </Field>
+
+          <Field className="flex flex-col gap-2 text-foreground/80">
+            <FieldLabel htmlFor="field-is-lowercase-required" className="text-lg">
+              Require Lowercase?
+            </FieldLabel>
+            <Checkbox
+              id="field-is-lowercase-required"
+              checked={validation.requireLowercase}
+              className="cursor-pointer focus-visible:border-accent"
+              onCheckedChange={(event) => {
+                if (typeof event === "boolean") {
+                  dispatch(
+                    updateField({
+                      fieldUpdates: {
+                        id,
+                        type,
+                        validation: {
+                          required: validation.required,
+                          requireLowercase: event,
+                        },
+                      },
+                    }),
+                  );
+                }
+              }}
+            />
+          </Field>
+
+          <Field className="flex flex-col gap-2 text-foreground/80">
+            <FieldLabel htmlFor="field-is-uppercase-required" className="text-lg">
+              Require Uppercase?
+            </FieldLabel>
+            <Checkbox
+              id="field-is-uppercase-required"
+              checked={validation.requireUppercase}
+              className="cursor-pointer focus-visible:border-accent"
+              onCheckedChange={(event) => {
+                if (typeof event === "boolean") {
+                  dispatch(
+                    updateField({
+                      fieldUpdates: {
+                        id,
+                        type,
+                        validation: {
+                          required: validation.required,
+                          requireUppercase: event,
+                        },
+                      },
+                    }),
+                  );
+                }
+              }}
+            />
+          </Field>
+
+          <Field className="flex flex-col gap-2 text-foreground/80">
+            <FieldLabel htmlFor="field-confirm-password" className="text-lg">
+              Require Confirm Password?
+            </FieldLabel>
+            <Checkbox
+              id="field-confirm-password"
+              checked={validation.confirmPassword}
+              className="cursor-pointer focus-visible:border-accent"
+              onCheckedChange={(event) => {
+                if (typeof event === "boolean") {
+                  dispatch(
+                    updateField({
+                      fieldUpdates: {
+                        id,
+                        type,
+                        validation: {
+                          required: validation.required,
+                          confirmPassword: event,
+                        },
                       },
                     }),
                   );
