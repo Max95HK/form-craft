@@ -154,13 +154,13 @@ export type FieldRecord<K extends FieldType> = {
 export type PartialExceptMany<T, K extends keyof T> = Partial<Omit<T, K>> &
   Pick<T, K>;
 
-type PatchText = PartialExceptMany<TextFieldConfig, "id" | "type">;
-type PatchNumber = PartialExceptMany<NumberFieldConfig, "id" | "type">;
-type PatchEmail = PartialExceptMany<EmailFieldConfig, "id" | "type">;
-type PatchPassword = PartialExceptMany<PasswordFieldConfig, "id" | "type">;
-type PatchDate = PartialExceptMany<DateFieldConfig, "id" | "type">;
-type PatchSelect = PartialExceptMany<SelectFieldConfig, "id" | "type">;
-type PatchCheckbox = PartialExceptMany<CheckboxFieldConfig, "id" | "type">;
+export type PatchText = PartialExceptMany<TextFieldConfig, "id" | "type">;
+export type PatchNumber = PartialExceptMany<NumberFieldConfig, "id" | "type">;
+export type PatchEmail = PartialExceptMany<EmailFieldConfig, "id" | "type">;
+export type PatchPassword = PartialExceptMany<PasswordFieldConfig, "id" | "type">;
+export type PatchDate = PartialExceptMany<DateFieldConfig, "id" | "type">;
+export type PatchSelect = PartialExceptMany<SelectFieldConfig, "id" | "type">;
+export type PatchCheckbox = PartialExceptMany<CheckboxFieldConfig, "id" | "type">;
 
 export type FieldPatch =
   | PatchText

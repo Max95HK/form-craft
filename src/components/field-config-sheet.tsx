@@ -8,12 +8,11 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
-import { useAppSelector } from "@/hooks/use-app-selector";
 import { useAppDispatch } from "@/hooks/use-app-dispatch";
-import { selectSelectedId } from "@/store/slices/selected-id-slice";
-import { clearId } from "@/store/slices/selected-id-slice";
+import { useAppSelector } from "@/hooks/use-app-selector";
+import { clearId, selectSelectedId } from "@/store/slices/selected-id-slice";
 
-import { extractFieldComponents } from "@/lib/utils";
+import { capitalize, extractFieldComponents } from "@/lib/utils";
 
 const FieldConfigSheet = () => {
   // Hooks
@@ -36,16 +35,18 @@ const FieldConfigSheet = () => {
 
   return (
     <Sheet open={isOpen} onOpenChange={handleOpenChange}>
-      <SheetContent className="bg-light-background border-none">
+      <SheetContent className="bg-light-background border-none p-2">
         <SheetHeader>
-          <SheetTitle className="text-2xl">Field Options</SheetTitle>
+          <SheetTitle className="text-2xl">
+            {capitalize(selectedField.type)} Field Options
+          </SheetTitle>
           <SheetDescription className="text-foreground/50 leading-6">
             Configure the properties, behaviors, and accessibility settings for
             this field.
           </SheetDescription>
         </SheetHeader>
 
-        <div className="">
+        <div className="p-4">
           <ConfigComp config={selectedField} />
         </div>
       </SheetContent>

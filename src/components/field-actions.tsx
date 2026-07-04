@@ -21,14 +21,14 @@ const FieldActions = ({ id }: FieldActionsProps) => {
   return (
     <div className="flex gap-2">
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger asChild>
           <SortableHanlde />
         </TooltipTrigger>
         <TooltipContent>Order Field</TooltipContent>
       </Tooltip>
 
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger asChild>
           <Button
             variant="outline"
             onClick={() => dispatch(selectId({ id }))}
@@ -41,7 +41,7 @@ const FieldActions = ({ id }: FieldActionsProps) => {
       </Tooltip>
 
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger asChild>
           <Button
             variant="outline"
             onClick={() => dispatch(removeField({ id }))}

@@ -33,7 +33,7 @@ export const formBuilderSlice = createSlice({
         return;
       }
 
-      Object.assign(fieldToUpdate, action.payload);
+      Object.assign(fieldToUpdate, action.payload.fieldUpdates);
     },
     removeField: (state, action: PayloadAction<{ id: string }>) => {
       state.fields = state.fields.filter(

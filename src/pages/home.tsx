@@ -27,8 +27,8 @@ const Home = () => {
               const PreviewComp =
                 extractFieldComponents(field).previewComponent;
               return (
-                <SortableField index={index} id={field.id}>
-                  <PreviewComp key={field.id} config={field} />
+                <SortableField key={field.id} index={index} id={field.id}>
+                  <PreviewComp config={field} />
                 </SortableField>
               );
             })}
