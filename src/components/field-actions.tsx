@@ -20,14 +20,14 @@ const FieldActions = ({ id }: FieldActionsProps) => {
   const dispatch = useAppDispatch();
   return (
     <div className="flex gap-2">
-      <Tooltip>
+      <Tooltip disableHoverableContent>
         <TooltipTrigger asChild>
           <SortableHanlde />
         </TooltipTrigger>
         <TooltipContent>Order Field</TooltipContent>
       </Tooltip>
 
-      <Tooltip>
+      <Tooltip disableHoverableContent>
         <TooltipTrigger asChild>
           <Button
             variant="outline"
@@ -40,7 +40,7 @@ const FieldActions = ({ id }: FieldActionsProps) => {
         <TooltipContent>Select Field</TooltipContent>
       </Tooltip>
 
-      <Tooltip>
+      <Tooltip disableHoverableContent>
         <TooltipTrigger asChild>
           <Button
             variant="outline"

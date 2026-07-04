@@ -8,6 +8,8 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
+import { useIsMobile } from "@/hooks/use-mobile";
+
 import { useAppDispatch } from "@/hooks/use-app-dispatch";
 import { useAppSelector } from "@/hooks/use-app-selector";
 import { clearId, selectSelectedId } from "@/store/slices/selected-id-slice";
@@ -19,6 +21,8 @@ const FieldConfigSheet = () => {
   const fields = useAppSelector(selectFields);
   const selectedId = useAppSelector(selectSelectedId);
   const dispatch = useAppDispatch();
+
+  const isMobile = useIsMobile();
 
   // Derived states
   const isOpen = selectedId !== null;
@@ -34,10 +38,17 @@ const FieldConfigSheet = () => {
   };
 
   return (
-    <Sheet open={isOpen} onOpenChange={handleOpenChange}>
-      <SheetContent className="bg-light-background border-none p-2">
+    <Sheet open={isOpen} onOpenChange={handleOpenChange} modal={isMobile}>
+      <SheetContent
+        className="bg-light-background border-none p-2"
+        onInteractOutside={(event) => {
+          if (!isMobile) {
+            event.preventDefault();
+          }
+        }}
+      >
         <SheetHeader>
-          <SheetTitle className="text-2xl">
+          <SheetTitle className="text-2xl text-accent">
             {capitalize(selectedField.type)} Field Options
           </SheetTitle>
           <SheetDescription className="text-foreground/50 leading-6">

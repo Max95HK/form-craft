@@ -32,9 +32,9 @@ const TextFieldPreviewComp = ({
           type="text"
           placeholder={placeholder}
           className={cn(
-            "border border-secondary outline-none bg-secondary/80 group-hover/field:bg-secondary transition-all pointer-events-none",
+            "border border-secondary outline-none bg-secondary/80 group-hover/field:bg-secondary transition-all pointer-events-none placeholder:text-background/70",
             isSelected &&
-              "bg-accent/60 group-hover/field:bg-accent/80 border-accent",
+              "bg-accent/60 group-hover/field:bg-accent/80 border-accent placeholder:text-foreground/70",
           )}
           value={defaultValue ?? ""}
         />
