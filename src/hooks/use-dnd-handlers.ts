@@ -43,6 +43,11 @@ export const useDndHandlers = () => {
     (event: DragEndEvent) => {
       if (event.canceled) return;
 
+      if (dndState.active && dndState.source === "builder") {
+        dispatch(dragEnd());
+        return;
+      }
+
       if (!idRef.current) return;
       dispatch(selectId({ id: idRef.current }));
 

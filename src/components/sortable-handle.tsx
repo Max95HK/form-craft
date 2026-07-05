@@ -11,12 +11,14 @@ const SortableHanlde = ({
   const { handleRef } = useSortableFieldHandle();
   return (
     <Button
-      ref={handleRef}
+      asChild
       variant="outline"
       className={cn("cursor-grab border-secondary", className)}
       {...props}
     >
-      <GripVertical className="size-5"/>
+      <button ref={handleRef}>
+        <GripVertical className="size-5" />
+      </button>
     </Button>
   );
 };
