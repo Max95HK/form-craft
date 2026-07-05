@@ -13,8 +13,8 @@ import { updateField } from "@/store/slices/form-builder-slice";
 type BaseFieldConfigCompProps = {
   id: string;
   label: string;
-  type: "text" | "email" | "password";
-  defaultValue?: string;
+  type: "text" | "email" | "password" | "select";
+  defaultValue?: string | string[];
   placeholder?: string;
 };
 
@@ -77,7 +77,6 @@ const BaseFieldSet = ({
             className="bg-background outline-none border-secondary focus-visible:border-accent"
           />
         </Field>
-
         <Field className="flex flex-col gap-2 text-foreground/80">
           <FieldLabel htmlFor="field-placeholder" className="text-lg">
             Placeholder

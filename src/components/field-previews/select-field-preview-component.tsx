@@ -14,7 +14,6 @@ import FieldActions from "../field-actions";
 
 import { cn } from "@/lib/utils";
 
-
 import type { SelectFieldConfig } from "@/types";
 
 type SelectFieldPreviewCompProps = {
@@ -34,23 +33,21 @@ const SelectFieldPreviewComp = ({
     <Field className={cn("group/field")}>
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <div className="flex gap-2">
-        <Select
-          defaultValue={isMultiple ? defaultValue?.join(", ") : defaultValue}
-        >
+        <Select value={!isMultiple ? defaultValue : ""} >
           <SelectTrigger
             className={cn(
-              "border-none outline-none bg-secondary/80 group-hover/field:bg-secondary transition-all pointer-events-none flex-1",
+              "border-none outline-none bg-secondary/80 group-hover/field:bg-secondary transition-all flex-1",
               isSelected &&
                 "bg-accent/60 group-hover/field:bg-accent/80 border-accent",
             )}
           >
-            <SelectValue placeholder={placeholder} className="" />
+            <SelectValue placeholder={placeholder} className=""/>
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent side="bottom" position="popper">
             <SelectGroup>
               {options &&
                 options.map((option) => (
-                  <SelectItem value={option.value}>{option.label}</SelectItem>
+                  <SelectItem key={option.value} value={option.value} className="pointer-events-none">{option.label}</SelectItem>
                 ))}
             </SelectGroup>
           </SelectContent>

@@ -7,6 +7,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 import AppSidebar from "@/components/layout/app-sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "sonner";
 
 import { useDndHandlers } from "@/hooks/use-dnd-handlers";
 
@@ -26,6 +27,7 @@ const RootLayout = () => {
                 <Outlet />
               </div>
             </main>
+            <Toaster richColors position="top-center"/>
           </SidebarProvider>
         </TooltipProvider>
       </DragDropProvider>
