@@ -2,8 +2,9 @@ import { useAppSelector } from "@/hooks/use-app-selector";
 import { selectSelectedId } from "@/store/slices/selected-id-slice";
 
 import { format } from "date-fns";
-import { useState } from "react";
+import { useMemo } from "react";
 
+import FieldActions from "@/components/field-actions";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Field, FieldLabel } from "@/components/ui/field";
@@ -12,7 +13,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import FieldActions from "@/components/field-actions";
 
 import { cn, getInitialDate } from "@/lib/utils";
 
@@ -28,7 +28,9 @@ const DateFieldPreviewComp = ({
   config: { label, id, defaultValue, format: defaultFormat },
 }: DateFieldPreviewCompProps) => {
   // States
-  const [date, setDate] = useState<Date>(() => getInitialDate(defaultValue));
+  const date = useMemo(() => {
+    return getInitialDate(defaultFormat, defaultValue);
+  }, [defaultValue, defaultFormat]);
 
   // Hooks
   const selectedId = useAppSelector(selectSelectedId);
@@ -61,12 +63,7 @@ const DateFieldPreviewComp = ({
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-              required
-            />
+            <Calendar mode="single" selected={date} required />
           </PopoverContent>
         </Popover>
 

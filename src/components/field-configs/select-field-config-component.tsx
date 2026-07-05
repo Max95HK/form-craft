@@ -30,7 +30,6 @@ type SelectFieldConfigCompProps = {
 const SelectFieldConfigComp = ({
   config: {
     id,
-    isMultiple,
     label,
     options,
     type,

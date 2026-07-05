@@ -63,13 +63,15 @@ export type CheckboxFieldConfig = {
   };
 };
 
+export type DateFormat =
+  "P" | "PP" | "PPP" | "PPPP" | "yyyy-MM-dd" | "dd/MM/yyyy" | "MM/dd/yyyy";
+
 export type DateFieldConfig = {
   type: "date";
   id: string;
   defaultValue?: string;
   label: string;
-  format:
-    "P" | "PP" | "PPP" | "PPPP" | "yyyy-MM-dd" | "dd/MM/yyyy" | "MM/dd/yyyy";
+  format: DateFormat;
   allowedDates?: string[];
   disabledDates?: string[];
   validation: {
@@ -156,10 +158,16 @@ export type PartialExceptMany<T, K extends keyof T> = Partial<Omit<T, K>> &
 export type PatchText = PartialExceptMany<TextFieldConfig, "id" | "type">;
 export type PatchNumber = PartialExceptMany<NumberFieldConfig, "id" | "type">;
 export type PatchEmail = PartialExceptMany<EmailFieldConfig, "id" | "type">;
-export type PatchPassword = PartialExceptMany<PasswordFieldConfig, "id" | "type">;
+export type PatchPassword = PartialExceptMany<
+  PasswordFieldConfig,
+  "id" | "type"
+>;
 export type PatchDate = PartialExceptMany<DateFieldConfig, "id" | "type">;
 export type PatchSelect = PartialExceptMany<SelectFieldConfig, "id" | "type">;
-export type PatchCheckbox = PartialExceptMany<CheckboxFieldConfig, "id" | "type">;
+export type PatchCheckbox = PartialExceptMany<
+  CheckboxFieldConfig,
+  "id" | "type"
+>;
 
 export type FieldPatch =
   | PatchText

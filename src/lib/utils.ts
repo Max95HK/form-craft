@@ -1,11 +1,11 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { isValid, parseISO } from "date-fns";
+import { isValid, parse } from "date-fns";
 
 import { FIELD_REGISTRY, FIELD_TYPE, type FieldType } from "@/constants";
 
-import type { FieldConfigUnion } from "@/types";
+import type { DateFormat, FieldConfigUnion } from "@/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -56,7 +56,7 @@ export const buildField = (type: FieldType, id: string): FieldConfigUnion => {
         type,
         id,
         defaultValue: "",
-        format: "PPP",
+        format: "dd/MM/yyyy",
         label: "Date Field",
         validation: {
           required: false,
@@ -120,7 +120,7 @@ export const extractFieldComponents = <T extends FieldConfigUnion>(
   };
 };
 
-export const getInitialDate = (value?: string) => {
-  const parsed = value ? parseISO(value) : new Date();
+export const getInitialDate = (format: DateFormat, value?: string) => {
+  const parsed = value ? parse(value, format, new Date()) : new Date();
   return isValid(parsed) ? parsed : new Date();
 };

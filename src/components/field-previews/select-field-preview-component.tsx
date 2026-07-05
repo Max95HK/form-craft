@@ -36,7 +36,7 @@ const SelectFieldPreviewComp = ({
         <Select value={!isMultiple ? defaultValue : ""} >
           <SelectTrigger
             className={cn(
-              "border-none outline-none bg-secondary/80 group-hover/field:bg-secondary transition-all flex-1",
+              "border-none outline-none bg-secondary/80 group-hover/field:bg-secondary transition-all flex-1 cursor-pointer",
               isSelected &&
                 "bg-accent/60 group-hover/field:bg-accent/80 border-accent",
             )}
