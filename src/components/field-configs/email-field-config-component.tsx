@@ -1,19 +1,23 @@
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Field,
   FieldGroup,
   FieldLabel,
-  FieldSet,
   FieldLegend,
+  FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 
 import BaseFieldSet from "@/components/field-configs/base-field-set";
+import EmailPermissionField from "@/components/email-permission-field";
 
 import { useAppDispatch } from "@/hooks/use-app-dispatch";
 import { updateField } from "@/store/slices/form-builder-slice";
 
 import type { EmailFieldConfig } from "@/types";
+
+export type Permission =
+  "allowedDomains" | "allowedEmails" | "blockedDomains" | "blockedEmails";
 
 type EmailFieldConfigCompProps = {
   config: EmailFieldConfig;
@@ -30,12 +34,27 @@ const EmailFieldConfigComp = ({
     blockedDomains,
     blockedEmails,
     defaultValue,
-    normalize,
     placeholder,
   },
 }: EmailFieldConfigCompProps) => {
   // Hooks
   const dispatch = useAppDispatch();
+
+  // Handler
+  const handleAddPermission = (
+    fieldKey: Permission,
+    updatedPermission: string[],
+  ) => {
+    dispatch(
+      updateField({
+        fieldUpdates: {
+          id,
+          type,
+          [fieldKey]: updatedPermission,
+        },
+      }),
+    );
+  };
 
   return (
     <div className="flex flex-col gap-6">
@@ -46,6 +65,40 @@ const EmailFieldConfigComp = ({
         defaultValue={defaultValue}
         placeholder={placeholder}
       />
+
+      <FieldSet>
+        <FieldLegend className="text-2xl! text-accent">Permissions</FieldLegend>
+        <FieldGroup>
+          <EmailPermissionField
+            fieldKey="allowedDomains"
+            title="Allowed Domain"
+            tooltipTitle="Add Domain"
+            initialValue={allowedDomains}
+            onAddPermission={handleAddPermission}
+          />
+          <EmailPermissionField
+            fieldKey="allowedEmails"
+            title="Allowed Emails"
+            tooltipTitle="Add Email"
+            initialValue={allowedEmails}
+            onAddPermission={handleAddPermission}
+          />
+          <EmailPermissionField
+            fieldKey="blockedDomains"
+            title="Blocked Domain"
+            tooltipTitle="Block Domain"
+            initialValue={blockedDomains}
+            onAddPermission={handleAddPermission}
+          />
+          <EmailPermissionField
+            fieldKey="blockedEmails"
+            title="Blocked Emails"
+            tooltipTitle="Block Email"
+            initialValue={blockedEmails}
+            onAddPermission={handleAddPermission}
+          />
+        </FieldGroup>
+      </FieldSet>
 
       <FieldSet>
         <FieldLegend className="text-2xl! text-accent">Validation</FieldLegend>

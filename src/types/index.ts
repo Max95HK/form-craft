@@ -85,7 +85,6 @@ export type EmailFieldConfig = {
   defaultValue?: string;
   label: string;
   placeholder?: string;
-  normalize?: boolean;
   allowedDomains?: string[]; // es: ["gmail.com"]
   blockedDomains?: string[]; // es: ["yopmail.com"]
   allowedEmails?: string[]; // whitelist

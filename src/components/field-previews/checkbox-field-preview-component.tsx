@@ -25,7 +25,7 @@ const CheckboxFieldPreviewComp = ({
 
   return (
     <Field
-      className={cn("group/field cursor-pointer")}
+      className={cn("group/field")}
     >
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <div className="flex gap-2 items-center">

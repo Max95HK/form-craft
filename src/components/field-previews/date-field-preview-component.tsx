@@ -37,7 +37,7 @@ const DateFieldPreviewComp = ({
   const isSelected = selectedId !== null && selectedId === id;
 
   return (
-    <Field className="cursor-pointer">
+    <Field>
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <div className="flex gap-2">
         <Popover open={false}>

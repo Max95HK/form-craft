@@ -25,7 +25,7 @@ const EmailFieldPreviewComp = ({
 
   return (
     <Field
-      className="group/field cursor-pointer"
+      className="group/field"
     >
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <div className="flex gap-2">

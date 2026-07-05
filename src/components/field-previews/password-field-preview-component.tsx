@@ -26,7 +26,7 @@ const PasswordFieldPreviewComp = ({
   const isSelected = selectedId !== null && selectedId === id;
 
   return (
-    <Field className="group/field cursor-pointer">
+    <Field className="group/field">
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <div className="flex gap-2">
         <div className="relative flex-1">

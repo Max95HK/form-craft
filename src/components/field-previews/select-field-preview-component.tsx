@@ -31,7 +31,7 @@ const SelectFieldPreviewComp = ({
   const isSelected = selectedId !== null && selectedId === id;
 
   return (
-    <Field className={cn("group/field cursor-pointer")}>
+    <Field className={cn("group/field")}>
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <div className="flex gap-2">
         <Select
