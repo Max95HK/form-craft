@@ -30,6 +30,12 @@ import {
 
 import type { FieldRecord } from "@/types";
 import TextFieldForm from "@/components/field-form/text-field-form";
+import NumberFieldForm from "@/components/field-form/number-field-form";
+import EmailFieldForm from "@/components/field-form/email-field-form";
+import PasswordFieldForm from "@/components/field-form/password-field-form";
+import DateFieldForm from "@/components/field-form/date-field-form";
+import SelectFieldForm from "@/components/field-form/select-field-form";
+import CheckboxFieldForm from "@/components/field-form/checkbox-field-form";
 
 export const SIDEBAR_ITEMS: {
   type: FieldType;
@@ -84,43 +90,49 @@ export const FIELD_REGISTRY: FieldRecord<FieldType> = {
     components: {
       previewComponent: TextFieldPreviewComp,
       configComponent: TextFieldConfigComp,
-      formComponent: TextFieldForm
+      formComponent: TextFieldForm,
     },
   },
   number: {
     components: {
       previewComponent: NumberFieldPreviewComp,
       configComponent: NumberFieldConfigComp,
+      formComponent: NumberFieldForm,
     },
   },
   email: {
     components: {
       previewComponent: EmailFieldPreviewComp,
       configComponent: EmailFieldConfigComp,
+      formComponent: EmailFieldForm,
     },
   },
   password: {
     components: {
       previewComponent: PasswordFieldPreviewComp,
       configComponent: PasswordFieldConfigComp,
+      formComponent: PasswordFieldForm,
     },
   },
   date: {
     components: {
       previewComponent: DateFieldPreviewComp,
       configComponent: DateFieldConfigComp,
+      formComponent: DateFieldForm,
     },
   },
   select: {
     components: {
       previewComponent: SelectFieldPreviewComp,
       configComponent: SelectFieldConfigComp,
+      formComponent: SelectFieldForm,
     },
   },
   checkbox: {
     components: {
       previewComponent: CheckboxFieldPreviewComp,
       configComponent: CheckboxFieldConfigComp,
+      formComponent: CheckboxFieldForm,
     },
   },
 };

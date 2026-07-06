@@ -28,7 +28,7 @@ const DateFieldForm = ({
         <Button
           id={field.name}
           variant="secondary"
-          data-invalid={!isInvalid}
+          aria-invalid={isInvalid}
           data-empty={!field.state.value}
           className={cn(
             "w-70 justify-start text-left font-normal data-[empty=true]:text-foreground bg-secondary/80 hover:bg-secondary flex-1",

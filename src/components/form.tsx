@@ -31,7 +31,6 @@ import { useForm, formOptions, type AnyFieldApi } from "@tanstack/react-form";
 import { Input } from "./ui/input";
 import { useAppSelector } from "@/hooks/use-app-selector";
 import { selectFields } from "@/store/slices/form-builder-slice";
-import GenericField from "./genereic-field";
 
 type FormProps = {
   isOpen: boolean;
@@ -74,11 +73,7 @@ const Form = ({ isOpen, setIsOpen }: FormProps) => {
                           <FieldLabel htmlFor={field.name}>
                             {customField.label}
                           </FieldLabel>
-                          <GenericField
-                            field={field}
-                            config={customField}
-                            isInvalid={isInvalid}
-                          />
+                        
                           {isInvalid && (
                             <FieldError errors={field.state.meta.errors} />
                           )}
