@@ -59,7 +59,7 @@ export type CheckboxFieldConfig = {
   defaultValue?: boolean;
   validation: {
     required: boolean;
-    mustBeTrueMessage?: string;
+    mustBeTrue?: boolean;
   };
 };
 

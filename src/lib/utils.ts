@@ -124,3 +124,8 @@ export const getInitialDate = (format: DateFormat, value?: string) => {
   const parsed = value ? parse(value, format, new Date()) : new Date();
   return isValid(parsed) ? parsed : new Date();
 };
+
+export const parseDates = (format: DateFormat, values?: string[]) => {
+  const parsedValues = values?.map((value) => parse(value, format, new Date()));
+  return parsedValues;
+};
