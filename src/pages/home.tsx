@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { useAppSelector } from "@/hooks/use-app-selector";
 
 import { selectFields } from "@/store/slices/form-builder-slice";
@@ -7,10 +9,14 @@ import AnimatedCard from "@/components/animated-card";
 import EmptyState from "@/components/empty-state";
 import SortableField from "@/components/sortable-field";
 import FieldConfigSheet from "@/components/field-config-sheet";
+import Form from "@/components/form";
 
 import { extractFieldComponents } from "@/lib/utils";
 
 const Home = () => {
+  // States
+  const [isOpen, setIsOpen] = useState(false);
+
   // Hooks
   const fields = useAppSelector(selectFields);
 
@@ -35,10 +41,14 @@ const Home = () => {
           </div>
 
           <div className="self-end mt-4">
-            <Button>Create Form</Button>
+            <Button onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}>
+              Create Form
+            </Button>
           </div>
         </AnimatedCard>
       )}
+
+      <Form isOpen={isOpen} setIsOpen={setIsOpen} />
 
       <FieldConfigSheet />
     </>

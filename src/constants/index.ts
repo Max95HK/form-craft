@@ -29,6 +29,7 @@ import {
 } from "@/components/field-configs/";
 
 import type { FieldRecord } from "@/types";
+import TextFieldForm from "@/components/field-form/text-field-form";
 
 export const SIDEBAR_ITEMS: {
   type: FieldType;
@@ -83,6 +84,7 @@ export const FIELD_REGISTRY: FieldRecord<FieldType> = {
     components: {
       previewComponent: TextFieldPreviewComp,
       configComponent: TextFieldConfigComp,
+      formComponent: TextFieldForm
     },
   },
   number: {

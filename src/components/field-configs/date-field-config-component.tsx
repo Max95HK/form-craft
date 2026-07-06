@@ -25,6 +25,7 @@ import { useAppDispatch } from "@/hooks/use-app-dispatch";
 import { updateField } from "@/store/slices/form-builder-slice";
 
 import type { DateFieldConfig } from "@/types";
+import { toast } from "sonner";
 
 type DateFieldConfigCompProps = {
   config: DateFieldConfig;
@@ -117,6 +118,9 @@ const DateFieldConfigComp = ({
                           ],
                         },
                       }),
+                    );
+                    toast.success(
+                      `Added ${format(disabledDate, defaultFormat)} to the disabled dates.`,
                     );
                   }}
                   selected={date}

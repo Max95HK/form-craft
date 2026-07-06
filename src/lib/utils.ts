@@ -3,9 +3,12 @@ import { twMerge } from "tailwind-merge";
 
 import { isValid, parse } from "date-fns";
 
+import { Input } from "@/components/ui/input";
+
 import { FIELD_REGISTRY, FIELD_TYPE, type FieldType } from "@/constants";
 
 import type { DateFormat, FieldConfigUnion } from "@/types";
+import type { AnyFieldApi } from "@tanstack/react-form";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -111,12 +114,23 @@ export const extractFieldComponents = <T extends FieldConfigUnion>(
 ): {
   previewComponent: React.ComponentType<{ config: FieldConfigUnion }>;
   configComponent: React.ComponentType<{ config: FieldConfigUnion }>;
+  formComponent: React.ComponentType<{
+    field: AnyFieldApi;
+    config: T;
+    isInvalid: boolean;
+  }>;
 } => {
   return {
     previewComponent: FIELD_REGISTRY[field["type"]].components
       .previewComponent as React.ComponentType<{ config: FieldConfigUnion }>,
     configComponent: FIELD_REGISTRY[field["type"]].components
       .configComponent as React.ComponentType<{ config: FieldConfigUnion }>,
+    formComponent: FIELD_REGISTRY[field["type"]].components
+      .formComponent as React.ComponentType<{
+      field: AnyFieldApi;
+      config: T;
+      isInvalid: boolean;
+    }>,
   };
 };
 

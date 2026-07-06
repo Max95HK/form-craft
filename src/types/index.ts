@@ -1,4 +1,5 @@
 import type { FieldType } from "@/constants";
+import type { AnyFieldApi } from "@tanstack/react-form";
 
 export type TextFieldConfig = {
   type: "text";
@@ -144,6 +145,11 @@ export type FieldDescriptor<T extends FieldConfigUnion> = {
     previewComponent: React.ComponentType<{ config: T }>;
     configComponent: React.ComponentType<{
       config: T;
+    }>;
+    formComponent: React.ComponentType<{
+      field: AnyFieldApi;
+      config: T;
+      isInvalid: boolean;
     }>;
   };
 };
