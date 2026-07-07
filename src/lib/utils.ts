@@ -6,7 +6,10 @@ import { isValid, parse } from "date-fns";
 import { FIELD_REGISTRY, FIELD_TYPE, type FieldType } from "@/constants";
 
 import type { DateFormat, FieldConfigUnion } from "@/types";
+
 import { formOptions, type AnyFieldApi } from "@tanstack/react-form";
+
+import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -145,7 +148,8 @@ export const parseDates = (format: DateFormat, values?: string[]) => {
 export const buildFormOpt = (fields: FieldConfigUnion[]) => {
   const defaultValues = fields.reduce(
     (acc, field) => {
-      switch (field.type) {
+      const { type } = field;
+      switch (type) {
         case FIELD_TYPE.TEXT:
           acc[field.name ?? field.id] = field.defaultValue ?? "";
           return acc;
@@ -179,7 +183,7 @@ export const buildFormOpt = (fields: FieldConfigUnion[]) => {
           return acc;
 
         default:
-          throw new Error("Unhandled field type");
+          throw new Error(`Unhandled type: ${type satisfies never}`);
       }
     },
     {} as Record<string, unknown>,
@@ -187,4 +191,161 @@ export const buildFormOpt = (fields: FieldConfigUnion[]) => {
 
   const formOpt = formOptions({ defaultValues });
   return formOpt;
+};
+
+export const buildZodSchema = (fields: FieldConfigUnion[]) => {
+  const fieldSchema = fields.reduce(
+    (acc, field) => {
+      const { type, name, id } = field;
+      const key = name ?? id;
+
+      switch (type) {
+        case FIELD_TYPE.TEXT: {
+          const {
+            validation: { required, maxLength, minLength },
+          } = field;
+          let schema: z.ZodString | z.ZodOptional<z.ZodString> = z.string();
+
+          if (minLength) {
+            schema = schema.min(
+              minLength,
+              `${key} must be at least ${minLength} char long.`,
+            );
+          }
+          if (maxLength) {
+            schema = schema.max(
+              maxLength,
+              `${key} must be at most ${maxLength} char long.`,
+            );
+          }
+
+          if (!required) {
+            schema = schema.optional();
+          }
+
+          acc[key] = schema;
+          return acc;
+        }
+
+        case FIELD_TYPE.NUMBER: {
+          const {
+            validation: { required, max, min },
+          } = field;
+          let schema: z.ZodNumber | z.ZodOptional<z.ZodNumber> = z.number();
+
+          if (min) {
+            schema = schema.min(
+              min,
+              `${key} must have at least ${min} digit${min > 1 ? "s" : ""}.`,
+            );
+          }
+          if (max) {
+            schema = schema.max(max, `${key} must be at most ${max} digits.`);
+          }
+
+          if (!required) {
+            schema = schema.optional();
+          }
+
+          acc[key] = schema;
+          return acc;
+        }
+
+        case FIELD_TYPE.EMAIL: {
+          const {
+            validation: { required, maxLength, minLength },
+          } = field;
+          let schema: z.ZodString | z.ZodOptional<z.ZodString> = z.string();
+
+          if (minLength) {
+            schema = schema.min(
+              minLength,
+              `${key} must be at least ${minLength} char long.`,
+            );
+          }
+          if (maxLength) {
+            schema = schema.max(
+              maxLength,
+              `${key} must be at most ${maxLength} char long.`,
+            );
+          }
+
+          if (!required) {
+            schema = schema.optional();
+          }
+
+          acc[key] = schema;
+          return acc;
+        }
+
+        case FIELD_TYPE.PASSWORD: {
+          const {
+            validation: {
+              required,
+              maxLength,
+              minLength,
+              requireLowercase,
+              requireNumber,
+              requireSymbol,
+              requireUppercase,
+              pattern,
+              messages,
+            },
+          } = field;
+          let schema: z.ZodString | z.ZodOptional<z.ZodString> = z.string();
+
+          if (minLength) {
+            schema = schema.min(
+              minLength,
+              `${key} must be at least ${minLength} char long.`,
+            );
+          }
+          if (maxLength) {
+            schema = schema.max(
+              maxLength,
+              `${key} must be at most ${maxLength} char long.`,
+            );
+          }
+          if (requireLowercase) {
+            schema = schema.refine(
+              (val) => /[a-z]/.test(val),
+              `${key} must contains at least a lowercase letter.`,
+            );
+          }
+          if (requireUppercase) {
+            schema = schema.refine(
+              (val) => /[A-Z]/.test(val),
+              `${key} must contains at least a uppercase letter.`,
+            );
+          }
+          if (requireNumber) {
+            schema = schema.refine(
+              (val) => /[0-9]/.test(val),
+              `${key} must contains at least a number.`,
+            );
+          }
+          if (requireSymbol) {
+            schema = schema.refine(
+              (val) => /[^A-Za-z0-9]/.test(val),
+              `${key} must contains at least a symbol.`,
+            );
+          }
+          if (pattern) {
+            schema = schema.regex(pattern, messages?.pattern);
+          }
+
+          if (!required) {
+            schema = schema.optional();
+          }
+
+          acc[key] = schema;
+          return acc;
+        }
+
+        default:
+          throw new Error(`Unhandled type: ${type satisfies never}`);
+      }
+    },
+    {} as Record<string, z.ZodType>,
+  );
 };

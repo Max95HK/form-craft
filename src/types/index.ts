@@ -122,7 +122,7 @@ export type PasswordFieldConfig = {
     requireNumber?: boolean;
     requireUppercase?: boolean;
     requireLowercase?: boolean;
-    pattern?: string;
+    pattern?: RegExp;
     confirmWith?: string; // id of the field for the match
     confirmPassword?: boolean;
 

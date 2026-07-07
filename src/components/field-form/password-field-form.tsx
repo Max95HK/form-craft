@@ -2,8 +2,6 @@ import type { PasswordFieldConfig } from "@/types";
 import type { AnyFieldApi } from "@tanstack/react-form";
 
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { EyeClosedIcon, EyeIcon } from "lucide-react";
 
 type PasswordFieldFormProps = {
   field: AnyFieldApi;

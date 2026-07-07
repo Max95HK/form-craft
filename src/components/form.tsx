@@ -65,6 +65,7 @@ const Form = ({ isOpen, setIsOpen }: FormProps) => {
                   const FormFieldComp =
                     extractFieldComponents(customField).formComponent;
                   return (
+                    // TODO: Aggiungere l'input per aggiungere il name ad ogni field nei vari config
                     <form.Field
                       key={customField.id}
                       name={customField.name ?? customField.id}
