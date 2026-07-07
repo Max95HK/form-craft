@@ -40,6 +40,7 @@ const EmailFieldPreviewComp = ({
               "bg-accent/60 group-hover/field:bg-accent/80 border-accent",
           )}
           value={defaultValue ?? ""}
+          readOnly
         />
 
          <FieldActions id={id} />

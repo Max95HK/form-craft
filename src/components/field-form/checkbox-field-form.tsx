@@ -9,19 +9,18 @@ type CheckboxFieldFormProps = {
   isInvalid: boolean;
 };
 
-const CheckboxFieldForm = ({
-  field,
-  isInvalid,
-}: CheckboxFieldFormProps) => {
+const CheckboxFieldForm = ({ field, isInvalid }: CheckboxFieldFormProps) => {
   return (
     <Checkbox
       id={field.name}
-      checked={field.state.value}
+      checked={field.state.value ?? false}
       aria-invalid={isInvalid}
       onBlur={field.handleBlur}
       onCheckedChange={(event) => {
         if (typeof event === "boolean") {
-          field.handleChange(event);
+          setTimeout(() => {
+            field.handleChange(event);
+          }, 0);
         }
       }}
       className={cn(

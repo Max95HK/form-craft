@@ -40,6 +40,7 @@ const PasswordFieldPreviewComp = ({
             )}
             placeholder={placeholder}
             value={defaultValue ?? ""}
+            readOnly
           />
           <Button
             size="icon"

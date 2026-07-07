@@ -47,7 +47,7 @@ const DateFieldForm = ({
       <PopoverContent className="w-auto p-0">
         <Calendar
           mode="single"
-          selected={field.state.value}
+          selected={field.state.value ?? new Date()}
           onSelect={(value) => field.handleChange(value)}
           onDayBlur={field.handleBlur}
           required

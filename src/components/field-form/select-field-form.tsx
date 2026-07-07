@@ -22,7 +22,7 @@ const SelectFieldForm = ({
   isInvalid,
 }: SelectFieldFormProps) => {
   return (
-    <Select value={field.state.value} onValueChange={field.handleChange}>
+    <Select value={field.state.value ?? ''} onValueChange={field.handleChange}>
       <SelectTrigger
         className={cn(
           "border-none outline-none bg-secondary/80 transition-all flex-1 cursor-pointer",

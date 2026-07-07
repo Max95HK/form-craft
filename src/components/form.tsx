@@ -1,3 +1,4 @@
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -6,31 +7,20 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
   Field,
-  FieldContent,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
-  FieldLegend,
-  FieldSeparator,
-  FieldSet,
-  FieldTitle,
 } from "@/components/ui/field";
 
-import { useForm, formOptions, type AnyFieldApi } from "@tanstack/react-form";
-import { Input } from "./ui/input";
 import { useAppSelector } from "@/hooks/use-app-selector";
+import { extractFieldComponents } from "@/lib/utils";
 import { selectFields } from "@/store/slices/form-builder-slice";
+import { useForm } from "@tanstack/react-form";
+
+import { buildFormOpt } from "@/lib/utils";
+import { Button } from "./ui/button";
+import { useMemo } from "react";
 
 type FormProps = {
   isOpen: boolean;
@@ -39,9 +29,16 @@ type FormProps = {
 
 const Form = ({ isOpen, setIsOpen }: FormProps) => {
   // Hooks
-  const form = useForm();
-
   const fields = useAppSelector(selectFields);
+
+  const formOpt = useMemo(() => buildFormOpt(fields), [fields]);
+
+  const form = useForm({
+    ...formOpt,
+    onSubmit: ({ value }) => {
+      console.log(value);
+    },
+  });
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -60,31 +57,49 @@ const Form = ({ isOpen, setIsOpen }: FormProps) => {
               id="personal-form"
               onSubmit={(event) => {
                 event.preventDefault();
+                form.handleSubmit();
               }}
             >
               <FieldGroup>
-                {fields.map((customField) => (
-                  <form.Field name="">
-                    {(field) => {
-                      const isInvalid =
-                        field.state.meta.isTouched && !field.state.meta.isValid;
-                      return (
-                        <Field data-invalid={isInvalid}>
-                          <FieldLabel htmlFor={field.name}>
-                            {customField.label}
-                          </FieldLabel>
-                        
-                          {isInvalid && (
-                            <FieldError errors={field.state.meta.errors} />
-                          )}
-                        </Field>
-                      );
-                    }}
-                  </form.Field>
-                ))}
+                {fields.map((customField) => {
+                  const FormFieldComp =
+                    extractFieldComponents(customField).formComponent;
+                  return (
+                    <form.Field
+                      key={customField.id}
+                      name={customField.name ?? customField.id}
+                    >
+                      {(field) => {
+                        const isInvalid =
+                          field.state.meta.isTouched &&
+                          !field.state.meta.isValid;
+                        return (
+                          <Field key={customField.id} data-invalid={isInvalid}>
+                            <FieldLabel htmlFor={field.name}>
+                              {customField.label}
+                            </FieldLabel>
+                            <FormFieldComp
+                              config={customField}
+                              field={field}
+                              isInvalid={isInvalid}
+                            />
+                            {isInvalid && (
+                              <FieldError errors={field.state.meta.errors} />
+                            )}
+                          </Field>
+                        );
+                      }}
+                    </form.Field>
+                  );
+                })}
               </FieldGroup>
             </form>
           </CardContent>
+          <CardFooter className="justify-end">
+            <Button type="submit" form="personal-form">
+              Try Form
+            </Button>
+          </CardFooter>
         </Card>
       </DialogContent>
     </Dialog>

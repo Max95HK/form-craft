@@ -37,6 +37,7 @@ const NumberFieldPreviewComp = ({
               "bg-accent/60 group-hover/field:bg-accent/80 border-accent",
           )}
           value={defaultValue ?? 0}
+          readOnly
         />
 
       <FieldActions id={id} />

@@ -14,7 +14,7 @@ const EmailFieldForm = ({ field, config, isInvalid }: EmailFieldFormProps) => {
       id={field.name}
       type="email"
       name={field.name}
-      value={field.state.value}
+      value={field.state.value ?? ''}
       onBlur={field.handleBlur}
       onChange={(event) => field.handleChange(event.target.value)}
       aria-invalid={isInvalid}

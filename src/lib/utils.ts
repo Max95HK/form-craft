@@ -6,7 +6,7 @@ import { isValid, parse } from "date-fns";
 import { FIELD_REGISTRY, FIELD_TYPE, type FieldType } from "@/constants";
 
 import type { DateFormat, FieldConfigUnion } from "@/types";
-import type { AnyFieldApi } from "@tanstack/react-form";
+import { formOptions, type AnyFieldApi } from "@tanstack/react-form";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -140,4 +140,51 @@ export const getInitialDate = (format: DateFormat, value?: string) => {
 export const parseDates = (format: DateFormat, values?: string[]) => {
   const parsedValues = values?.map((value) => parse(value, format, new Date()));
   return parsedValues;
+};
+
+export const buildFormOpt = (fields: FieldConfigUnion[]) => {
+  const defaultValues = fields.reduce(
+    (acc, field) => {
+      switch (field.type) {
+        case FIELD_TYPE.TEXT:
+          acc[field.name ?? field.id] = field.defaultValue ?? "";
+          return acc;
+
+        case FIELD_TYPE.NUMBER:
+          acc[field.name ?? field.id] = field.defaultValue ?? 0;
+          return acc;
+
+        case FIELD_TYPE.CHECKBOX: {
+          console.log(field.defaultValue);
+          acc[field.name ?? field.id] = field.defaultValue ?? false;
+          return acc;
+        }
+
+        case FIELD_TYPE.DATE:
+          acc[field.name ?? field.id] = field.defaultValue ?? new Date();
+          return acc;
+
+        case FIELD_TYPE.EMAIL:
+          acc[field.name ?? field.id] = field.defaultValue ?? "";
+          return acc;
+
+        case FIELD_TYPE.PASSWORD:
+          acc[field.name ?? field.id] = field.defaultValue ?? "";
+          return acc;
+
+        case FIELD_TYPE.SELECT:
+          acc[field.name ?? field.id] = field.isMultiple
+            ? (field.defaultValue ?? [])
+            : [];
+          return acc;
+
+        default:
+          throw new Error("Unhandled field type");
+      }
+    },
+    {} as Record<string, unknown>,
+  );
+
+  const formOpt = formOptions({ defaultValues });
+  return formOpt;
 };

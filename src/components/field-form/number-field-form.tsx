@@ -15,7 +15,7 @@ const NumberFieldForm = ({ field, isInvalid }: NumberFieldFormProps) => {
       id={field.name}
       type="number"
       name={field.name}
-      value={field.state.value}
+      value={field.state.value ?? 0}
       onBlur={field.handleBlur}
       onChange={(event) => field.handleChange(event.target.value)}
       aria-invalid={isInvalid}

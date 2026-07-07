@@ -5,6 +5,7 @@ export type TextFieldConfig = {
   type: "text";
   id: string;
   label: string;
+  name?: string;
   defaultValue?: string;
   placeholder?: string;
   validation: {
@@ -18,6 +19,7 @@ export type NumberFieldConfig = {
   type: "number";
   id: string;
   label: string;
+  name?: string;
   defaultValue?: number;
   validation: {
     required: boolean;
@@ -30,6 +32,7 @@ export type SelectFieldConfig =
   | {
       type: "select";
       id: string;
+      name?: string;
       isMultiple: false;
       placeholder?: string;
       defaultValue?: string;
@@ -42,6 +45,7 @@ export type SelectFieldConfig =
   | {
       type: "select";
       id: string;
+      name?: string;
       label: string;
       placeholder?: string;
       isMultiple: true;
@@ -55,6 +59,7 @@ export type SelectFieldConfig =
 export type CheckboxFieldConfig = {
   type: "checkbox";
   id: string;
+  name?: string;
   label: string;
   helperText?: string;
   defaultValue?: boolean;
@@ -70,6 +75,7 @@ export type DateFormat =
 export type DateFieldConfig = {
   type: "date";
   id: string;
+  name?: string;
   defaultValue?: string;
   label: string;
   format: DateFormat;
@@ -85,6 +91,7 @@ export type DateFieldConfig = {
 export type EmailFieldConfig = {
   type: "email";
   id: string;
+  name?: string;
   defaultValue?: string;
   label: string;
   placeholder?: string;
@@ -102,6 +109,7 @@ export type EmailFieldConfig = {
 export type PasswordFieldConfig = {
   type: "password";
   id: string;
+  name?: string;
   defaultValue?: string;
   placeholder?: string;
   label: string;

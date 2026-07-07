@@ -37,6 +37,7 @@ const TextFieldPreviewComp = ({
               "bg-accent/60 group-hover/field:bg-accent/80 border-accent placeholder:text-foreground/70",
           )}
           value={defaultValue ?? ""}
+          readOnly
         />
         
         <FieldActions id={id} />
