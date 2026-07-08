@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/field";
 
 import { useAppSelector } from "@/hooks/use-app-selector";
-import { extractFieldComponents } from "@/lib/utils";
+import { buildZodSchema, extractFieldComponents } from "@/lib/utils";
 import { selectFields } from "@/store/slices/form-builder-slice";
 import { useForm } from "@tanstack/react-form";
 
@@ -32,9 +32,14 @@ const Form = ({ isOpen, setIsOpen }: FormProps) => {
   const fields = useAppSelector(selectFields);
 
   const formOpt = useMemo(() => buildFormOpt(fields), [fields]);
+  const schema = useMemo(() => buildZodSchema(fields), [fields]);
 
   const form = useForm({
     ...formOpt,
+    validators: {
+      onSubmit: schema,
+      onBlur: schema,
+    },
     onSubmit: ({ value }) => {
       console.log(value);
     },

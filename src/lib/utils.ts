@@ -219,8 +219,8 @@ export const buildZodSchema = (fields: FieldConfigUnion[]) => {
             );
           }
 
-          if (!required) {
-            schema = schema.optional();
+          if (required) {
+            schema = schema.min(1, `${key} is required.`);
           }
 
           acc[key] = schema;
@@ -342,10 +342,59 @@ export const buildZodSchema = (fields: FieldConfigUnion[]) => {
           return acc;
         }
 
+        case FIELD_TYPE.SELECT: {
+          const {
+            validation: { required },
+            options,
+          } = field;
+
+          const optionsValues = options.map((option) => option.value);
+
+          let schema: z.ZodEnum | z.ZodOptional<z.ZodEnum> =
+            z.enum(optionsValues);
+
+          if (!required) {
+            schema = schema.optional();
+          }
+
+          acc[key] = schema;
+          return acc;
+        }
+
+        case FIELD_TYPE.DATE: {
+          const {
+            validation: { required },
+          } = field;
+          let schema: z.ZodDate | z.ZodOptional<z.ZodDate> = z.date();
+
+          if (!required) {
+            schema = schema.optional();
+          }
+
+          acc[key] = schema;
+          return acc;
+        }
+
+        case FIELD_TYPE.CHECKBOX: {
+          const {
+            validation: { required },
+          } = field;
+          let schema: z.ZodBoolean | z.ZodOptional<z.ZodBoolean> = z.boolean();
+
+          if (!required) {
+            schema = schema.optional();
+          }
+
+          acc[key] = schema;
+          return acc;
+        }
+
         default:
           throw new Error(`Unhandled type: ${type satisfies never}`);
       }
     },
     {} as Record<string, z.ZodType>,
   );
+
+  return z.object(fieldSchema);
 };
